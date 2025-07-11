@@ -1,0 +1,32 @@
+/* src/styles/PageLayout.css */
+
+.page-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-header {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.page-content {
+  margin-top: 1rem;
+}
+
+.page-section {
+  margin-bottom: 2rem;
+}
+
+/* Dark mode support (optional) */
+body.dark-mode .page-container {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
