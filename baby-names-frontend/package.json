@@ -1,7 +1,8 @@
-{
+ {
   "name": "visualization-of-popular-baby-names",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://kibet868.github.io/baby-names-visualization",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.9",
@@ -15,15 +16,14 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.15.3"
   },
-"scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-},
-
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -42,7 +42,6 @@
       "last 1 safari version"
     ]
   },
-    "homepage": "https://kibet868.github.io/baby-names-visualization",
   "devDependencies": {
     "gh-pages": "^6.3.0"
   }
