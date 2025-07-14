@@ -1,24 +1,28 @@
- // src/components/RegisterForm.js
-import React, { useState } from "react";
+ import React, { useState } from "react";
+import "../styles/FormStyles.css"; // Optional shared styling
 
 function RegisterForm({ onRegisterSuccess }) {
-  const [name, setName] = useState("");         // Full Name
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user");
+  const [name, setName] = useState("");     // Full name
+  const [email, setEmail] = useState("");   // Email
+  const [password, setPassword] = useState(""); // Password
+  const [role, setRole] = useState("user"); // Default role
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
 
     if (!name || !email || !password || !role) {
-      alert("All fields are required.");
+      setErrorMsg("⚠️ All fields are required.");
       return;
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/register", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ name, email, password, role }),
       });
 
@@ -35,50 +39,53 @@ function RegisterForm({ onRegisterSuccess }) {
         alert("✅ Registration successful!");
         if (onRegisterSuccess) onRegisterSuccess(data.role);
       } else {
-        alert(data.message || "❌ Registration failed.");
+        setErrorMsg(data.message || "❌ Registration failed.");
       }
     } catch (err) {
       console.error("Registration error:", err.message);
-      alert("❌ Registration error: " + err.message);
+      setErrorMsg("❌ " + err.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
+    <div className="form-wrapper">
       <h2>Register</h2>
+      <form onSubmit={handleSubmit} className="form-container">
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-      <input
-        type="text"
-        placeholder="Full Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+        <select value={role} onChange={(e) => setRole(e.target.value)} required>
+          <option value="">Select Role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
 
-      <select value={role} onChange={(e) => setRole(e.target.value)} required>
-        <option value="">Select Role</option>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
+        <button type="submit">Register</button>
 
-      <button type="submit">Register</button>
-    </form>
+        {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      </form>
+    </div>
   );
 }
 

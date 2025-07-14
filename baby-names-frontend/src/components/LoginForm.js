@@ -1,61 +1,73 @@
- import React, { useState } from "react";
+ // src/components/LoginForm.js
+import React, { useState } from "react";
+import "../styles/FormStyles.css"; // optional styling
 
 function LoginForm({ onLoginSuccess }) {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg(""); // clear previous error
 
-    fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Login failed");
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
         }
-        return res.json();
-      })
-      .then((data) => {
-        if (data.token && data.role) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("role", data.role);
-          alert("✅ Login successful!");
+      );
 
-          if (onLoginSuccess) {
-            onLoginSuccess(data.role); // e.g., navigate to chart/admin
-          }
-        } else {
-          alert(data.message || "Login failed");
-        }
-      })
-      .catch((err) => {
-        console.error("Login error:", err);
-        alert("❌ Login error. Backend might be down.");
-      });
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Login failed");
+      }
+
+      const data = await res.json();
+
+      // Save token and role to localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
+
+      // Trigger success handler (navigate to home page)
+      onLoginSuccess(data.role);
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorMsg(error.message || "Backend might be down.");
+    }
   };
 
   return (
-    <form onSubmit={handleLogin} className="form-container">
+    <div className="form-wrapper">
       <h2>Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+      <form onSubmit={handleSubmit} className="form-container">
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Login</button>
+        {errorMsg && <p className="error-msg">❌ {errorMsg}</p>}
+      </form>
+    </div>
   );
 }
 

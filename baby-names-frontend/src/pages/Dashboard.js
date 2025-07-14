@@ -9,7 +9,8 @@ const Dashboard = () => {
     // Later, replace this with real API fetch
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/names"); // replace with your real API
+        const res = await fetchfetch(`${process.env.REACT_APP_API_URL}/api/names`)
+; // replace with your real API
         const data = await res.json();
 
         // Transform data to Chart.js format

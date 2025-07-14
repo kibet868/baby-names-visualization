@@ -9,13 +9,19 @@ function FavoritesPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5000/api/favorites", {
+    if (!token) {
+      setError("You must be logged in to view favorites.");
+      setLoading(false);
+      return;
+    }
+
+    fetch(`${process.env.REACT_APP_API_URL}/api/favorites`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch favorites");
+        if (!res.ok) throw new Error("Failed to fetch favorites.");
         return res.json();
       })
       .then((data) => {
@@ -23,12 +29,13 @@ function FavoritesPage() {
         setLoading(false);
       })
       .catch((err) => {
+        console.error("Error loading favorites:", err.message);
         setError(err.message);
         setLoading(false);
       });
   }, []);
 
-  if (loading) return <p>Loading favorites...</p>;
+  if (loading) return <p>🔄 Loading favorites...</p>;
   if (error) return <p style={{ color: "red" }}>❌ {error}</p>;
 
   return (
@@ -40,7 +47,7 @@ function FavoritesPage() {
         <ul className="favorites-list">
           {favorites.map((fav) => (
             <li key={fav.id}>
-              <strong>{fav.name}</strong> - {fav.gender} - {fav.year}
+              <strong>{fav.name}</strong> — {fav.gender} — {fav.year}
             </li>
           ))}
         </ul>

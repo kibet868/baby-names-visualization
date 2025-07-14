@@ -41,7 +41,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/baby-names-visualization">
       <div className={`App ${darkMode ? "dark" : ""}`}>
         <header className="navbar">
           <h1>Baby Names Visualization</h1>
