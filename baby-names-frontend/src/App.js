@@ -1,6 +1,6 @@
  import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router, // ✅ Changed from BrowserRouter
   Routes,
   Route,
   Link,
@@ -41,7 +41,7 @@ function App() {
   };
 
   return (
-    <Router basename="/baby-names-visualization">
+    <Router>
       <div className={`App ${darkMode ? "dark" : ""}`}>
         <header className="navbar">
           <h1>Baby Names Visualization</h1>
