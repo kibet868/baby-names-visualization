@@ -1,10 +1,8 @@
- // backend/index.js
-
-const express = require("express");
+ const express = require("express");
 const cors = require("cors");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
-require("dotenv").config(); // Load .env file if present
+require("dotenv").config();
 
 const authRoutes = require("./routes/auth");
 const namesRoutes = require("./routes/names");
@@ -49,23 +47,24 @@ db.run(
   }
 );
 
-// Make DB available in routes via app.locals
+// Make DB available to all routes
 app.locals.db = db;
 
-// ========== CORS FIX ==========
+// ========== CORS SETUP ==========
 app.use(cors({
-  origin: "https://kibet868.github.io", // ✅ Allow GitHub Pages frontend
+  origin: "https://kibet868.github.io", // ✅ Allow frontend domain
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: false // Set to true only if using cookies/sessions
+  credentials: false
 }));
+app.options("*", cors()); // ✅ Preflight requests
 
 // ========== MIDDLEWARE ==========
 app.use(express.json());
 
 // ========== ROUTES ==========
-app.use("/api", authRoutes);    // /api/register, /api/login
+app.use("/api", authRoutes);    // /api/login, /api/register
 app.use("/api", namesRoutes);   // /api/names
-app.use("/api", adminRoutes);   // /api/upload
+app.use("/api", adminRoutes);   // /api/upload, /api/admin/users etc.
 
 // ========== DEPLOYMENT SUPPORT ==========
 if (process.env.NODE_ENV === "production") {
