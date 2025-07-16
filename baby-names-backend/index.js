@@ -52,8 +52,14 @@ db.run(
 // Make DB available in routes via app.locals
 app.locals.db = db;
 
+// ========== CORS FIX ==========
+app.use(cors({
+  origin: "https://kibet868.github.io", // ✅ Allow GitHub Pages frontend
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: false // Set to true only if using cookies/sessions
+}));
+
 // ========== MIDDLEWARE ==========
-app.use(cors());
 app.use(express.json());
 
 // ========== ROUTES ==========
@@ -63,7 +69,6 @@ app.use("/api", adminRoutes);   // /api/upload
 
 // ========== DEPLOYMENT SUPPORT ==========
 if (process.env.NODE_ENV === "production") {
-  // Optional: Serve static files if frontend is inside backend
   const frontendPath = path.resolve(__dirname, "../baby-names-frontend/build");
   app.use(express.static(frontendPath));
 
