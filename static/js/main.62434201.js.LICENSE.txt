@@ -6,7 +6,7 @@
  */
 
 /*!
- * Chart.js v4.4.9
+ * Chart.js v4.5.0
  * https://www.chartjs.org
  * (c) 2025 Chart.js Contributors
  * Released under the MIT License
@@ -272,17 +272,6 @@
  * @author Stoyan Stefanov <sstoo@gmail.com>
  * {@link   http://www.phpied.com/rgb-color-parser-in-javascript/}
  * @license Use it if you like it
- */
-
-/**
- * react-router v7.6.2
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
  */
 
 /** ====================================================================
