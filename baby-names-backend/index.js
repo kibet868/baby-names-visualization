@@ -58,12 +58,9 @@ app.use("/api", authRoutes);
 app.use("/api", namesRoutes);
 app.use("/api", adminRoutes);
 
-// ========= FALLBACK FOR STATIC FILES (optional) =========
-// If you ever want to serve frontend build from backend:
-const buildPath = path.join(__dirname, "baby-names-frontend", "build");
-app.use(express.static(buildPath));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(buildPath, "index.html"));
+// ========= DEFAULT ROUTE =========
+app.get("/", (req, res) => {
+  res.send("✅ Baby Names Backend API is running.");
 });
 
 // ========= ERROR HANDLER =========
