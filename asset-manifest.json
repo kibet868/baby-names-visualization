@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/baby-names-visualization/static/css/main.d993cea0.css",
-    "main.js": "/baby-names-visualization/static/js/main.e2d7dfb4.js",
+    "main.css": "/baby-names-visualization/static/css/main.52051826.css",
+    "main.js": "/baby-names-visualization/static/js/main.caa83857.js",
     "static/js/977.a0f92164.chunk.js": "/baby-names-visualization/static/js/977.a0f92164.chunk.js",
     "static/js/732.404b1924.chunk.js": "/baby-names-visualization/static/js/732.404b1924.chunk.js",
     "index.html": "/baby-names-visualization/index.html",
-    "main.d993cea0.css.map": "/baby-names-visualization/static/css/main.d993cea0.css.map",
-    "main.e2d7dfb4.js.map": "/baby-names-visualization/static/js/main.e2d7dfb4.js.map",
+    "main.52051826.css.map": "/baby-names-visualization/static/css/main.52051826.css.map",
+    "main.caa83857.js.map": "/baby-names-visualization/static/js/main.caa83857.js.map",
     "977.a0f92164.chunk.js.map": "/baby-names-visualization/static/js/977.a0f92164.chunk.js.map",
     "732.404b1924.chunk.js.map": "/baby-names-visualization/static/js/732.404b1924.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d993cea0.css",
-    "static/js/main.e2d7dfb4.js"
+    "static/css/main.52051826.css",
+    "static/js/main.caa83857.js"
   ]
 }
