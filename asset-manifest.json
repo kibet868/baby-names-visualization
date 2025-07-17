@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/baby-names-visualization/static/css/main.c3a29064.css",
+    "main.css": "/baby-names-visualization/static/css/main.8bc42a37.css",
     "main.js": "/baby-names-visualization/static/js/main.f5a3e509.js",
     "static/js/977.a0f92164.chunk.js": "/baby-names-visualization/static/js/977.a0f92164.chunk.js",
     "static/js/732.404b1924.chunk.js": "/baby-names-visualization/static/js/732.404b1924.chunk.js",
     "index.html": "/baby-names-visualization/index.html",
-    "main.c3a29064.css.map": "/baby-names-visualization/static/css/main.c3a29064.css.map",
+    "main.8bc42a37.css.map": "/baby-names-visualization/static/css/main.8bc42a37.css.map",
     "main.f5a3e509.js.map": "/baby-names-visualization/static/js/main.f5a3e509.js.map",
     "977.a0f92164.chunk.js.map": "/baby-names-visualization/static/js/977.a0f92164.chunk.js.map",
     "732.404b1924.chunk.js.map": "/baby-names-visualization/static/js/732.404b1924.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c3a29064.css",
+    "static/css/main.8bc42a37.css",
     "static/js/main.f5a3e509.js"
   ]
 }
